@@ -8,14 +8,14 @@ class ActorsController < ApplicationController
 	def create
 		@actor = Actor.new(actor_params)
 
-		@actor.update(alive:false)
-		#if @actor.save
-			#@actor.death_date && @actor.death_place != nil ? @actor.update(alive:false) : @actor.update(alive:true)
-			#redirect_to actors_path
-		#else
-		#	render :new	
-		#end
 		#@actor.update(alive:false)
+		if @actor.save
+			@actor.death_date && @actor.death_place != nil ? @actor.update(alive:false) : @actor.update(alive:true)
+			redirect_to actors_path
+		else
+			render :new	
+		end
+
 	
 	end
 	private
